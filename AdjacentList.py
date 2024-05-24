@@ -30,6 +30,7 @@ class AdjacentList:
             for j, has_edge in enumerate(self, list):
                 if has_edge:
                     unorderedArcList.add(Edge(i,j))
+        return unorderedArcList
 
 
 
