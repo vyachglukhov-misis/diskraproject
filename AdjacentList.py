@@ -1,6 +1,7 @@
 import AdjacentMatrix
 import IncidenceMatrix
 from Edge import Edge
+from UnorderedArcList import UnorderedArcList
 
 
 class AdjacentList:
@@ -22,6 +23,15 @@ class AdjacentList:
                 if has_edge:
                     am.add(Edge(i, j))
         return am
+    
+    def to_nonsorted_Arcs_List(self):
+        unorderedArcList = UnorderedArcList(self.n)
+        for i, row in enumerate(self.list):
+            for j, has_edge in enumerate(self, list):
+                if has_edge:
+                    unorderedArcList.add(Edge(i,j))
+
+
 
 
     # def to_incidence_matrix(self):
