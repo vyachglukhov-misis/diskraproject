@@ -1,44 +1,48 @@
-from . import ListSmezhnosti, MatrixSmezh
+from AdjacentList import AdjacentList
+from AdjacentMatrix import AdjacentMatrix
+from Edge import Edge
+
 
 class IncidenceMatrix:
     def __init__(self, num_vertices, num_edges):
         self.v = num_vertices
         self.e = num_edges
-        self.matrix = [[0 for j in range(self.v)] for i in range(self.e)]
+        self.matrix = [[0 for _ in range(self.e)] for _ in range(self.v)]
 
-    def add_edge(self, edge_index, start_vertex, end_vertex):
-        self.matrix[start_vertex][edge_index] = 1
-        self.matrix[end_vertex][edge_index] = -1
+    def add(self, edge_index, edge: Edge):
+        self.matrix[edge.start][edge_index] = 1
+        self.matrix[edge.end][edge_index] = -1
 
-    def print_matrix(self):
+    def print(self):
         for row in self.matrix:
             print(row)
 
-    def toMatrixSmezh(self):
-        matrixSmezh = MatrixSmezh.MatrixSmezhnosti(self.v)
-        for i in range(self.v):
-            start_point = 0
-            end_point = 0
-            for j in range(self.e):
-                if self.matrix[j][i] == 1:
-                    start_point = j
-                if self.matrix[j][i] == -1:
-                    end_point = j
-            if start_point == 1 and end_point == -1:
-                edge = MatrixSmezh.Edge(start_point, end_point)
-                matrixSmezh.add_edge(edge)
-    
-    def toListSmezh(self): 
-        listSmezh = ListSmezhnosti.ListSmezhnosti()
-        for i in range(self.v):
-            start_point = 0
-            end_point = 0
-            for j in range(self.e):
-                if self.matrix[j][i] == 1:
-                    start_point = j
-                if self.matrix[j][i] == -1:
-                    end_point = j
-            if start_point == 1 and end_point == -1:
-                edge = ListSmezhnosti.Edge(start_point, end_point)
-                listSmezh.add_edge(edge)
+    def to_adjacent_matrix(self) -> AdjacentMatrix:
+        adjacent_matrix = AdjacentMatrix(self.v)
+        for e in range(self.e):
+            edge = Edge(-1, -1)
+            for v in range(self.v):
+                if self.matrix[v][e] == 1:
+                    edge.start = v
+                if self.matrix[v][e] == -1:
+                    edge.end = v
+            if edge.start != -1 and edge.end != -1:
+                adjacent_matrix.add(edge)
+            else:
+                raise 'Stranno netu rebra'
+        return adjacent_matrix
 
+    def to_adjacent_list(self):
+        adjacent_list = AdjacentList(self.v)
+        for e in range(self.e):
+            edge = Edge(-1, -1)
+            for v in range(self.v):
+                if self.matrix[v][e] == 1:
+                    edge.start = v
+                if self.matrix[v][e] == -1:
+                    edge.end = v
+            if edge.start != -1 and edge.end != -1:
+                adjacent_list.add(edge)
+            else:
+                raise 'Stranno netu rebra'
+        return adjacent_list

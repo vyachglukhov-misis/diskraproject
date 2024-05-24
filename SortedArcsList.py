@@ -6,6 +6,7 @@ class Arc:
     def __lt__(self, other):
         return self.start < other.start
 
+
 class SortedArcList:
     def __init__(self):
         self.arcs = []
