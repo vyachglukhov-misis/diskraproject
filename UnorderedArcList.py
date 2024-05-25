@@ -1,4 +1,3 @@
-from AdjacentList import AdjacentList
 from Edge import Edge
 
 class UnorderedArcList:
@@ -13,10 +12,5 @@ class UnorderedArcList:
         for edge in self.edges:
             print(f"Start: {edge.start}, End: {edge.end}")
 
-    def to_adjacent_list(self) -> AdjacentList:
-        adjList = AdjacentList(self.v)
-        for i, edge in enumerate(self.edges):
-            edge = Edge(edge.start, edge.end)
-            adjList.add(edge)
-        return adjList
     
+
