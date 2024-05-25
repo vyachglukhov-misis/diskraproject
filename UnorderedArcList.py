@@ -6,14 +6,14 @@ class UnorderedArcList:
         self.edges = []
         self.v = v
 
-    def add(self, edge):
+    def add(self, edge: Edge):
         self.edges.append(edge)
 
     def print_bundle(self):
         for edge in self.edges:
             print(f"Start: {edge.start}, End: {edge.end}")
 
-    def to_adjacent_list(self):
+    def to_adjacent_list(self) -> AdjacentList:
         adjList = AdjacentList(self.v)
         for i, edge in enumerate(self.edges):
             edge = Edge(edge.start, edge.end)
