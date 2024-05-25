@@ -30,7 +30,7 @@ class AdjacentList:
     def to_unordered_arc_list(self):
         unorderedArcList = UnorderedArcList(self.n)
         for i, row in enumerate(self.list):
-            for j, has_edge in enumerate(self, list):
+            for j, has_edge in enumerate(row):
                 if has_edge:
                     unorderedArcList.add(Edge(i,j))
         return unorderedArcList
@@ -38,7 +38,7 @@ class AdjacentList:
     def to_ordered_arc_list(self):
         orderedArcList = SortedArcList(self.n)
         for i, row in enumerate(self.list):
-            for j, has_edge in enumerate(self, list):
+            for j, has_edge in enumerate(row):
                 if has_edge:
                     orderedArcList.add(Arc(i,j))
         return orderedArcList
