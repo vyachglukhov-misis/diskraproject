@@ -104,11 +104,16 @@ class ViewTransformerUtil:
         return incidence_matrix
 
     @staticmethod
-    def adj_list_to_arc_sheaves_list(adj_list:AdjacentList) -> ArcSheavesList:
-        edges = []
+    def adj_list_to_arc_sheaves_list(adj_list: AdjacentList) -> ArcSheavesList:
+        edges_count = 0
+        for i in range(len(adj_list.list)):
+            edges_count += sum(adj_list.list[i])
+
+        arc_sheaves_list = ArcSheavesList(adj_list.n, edges_count)
+
         for v_from, to_list in enumerate(adj_list.list):
             for _, v_to in enumerate(to_list):
-                edges.append(Edge(v_from, v_to))
+                arc_sheaves_list.add(Edge(v_from, v_to))
 
-        return ArcSheavesList(adj_list.n, edges)
+        return arc_sheaves_list
 
