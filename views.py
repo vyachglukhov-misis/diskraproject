@@ -76,7 +76,7 @@ class ViewTransformerUtil:
     def adj_list_to_unordered_arc_list(adj_list: AdjacentList) -> UnorderedArcList:
         unorderedArcList = UnorderedArcList(adj_list.n)
         for i, row in enumerate(adj_list.list):
-            for j, has_edge in enumerate(adj_list, list):
+            for j, has_edge in enumerate(row):
                 if has_edge:
                     unorderedArcList.add(Edge(i, j))
         return unorderedArcList
@@ -85,23 +85,23 @@ class ViewTransformerUtil:
     def adj_list_to_ordered_arc_list(adj_list):
         orderedArcList = SortedArcList(adj_list.n)
         for i, row in enumerate(adj_list.list):
-            for j, has_edge in enumerate(adj_list, list):
+            for j, has_edge in enumerate(row):
                 if has_edge:
                     orderedArcList.add(Arc(i, j))
         return orderedArcList
 
     @staticmethod
     def adj_list_to_incidence_matrix(adj_list):
-        edge_count = 0
-        for _, v_verticles in enumerate(adj_list.list):
-            edge_count += len(v_verticles)
-        incidenceMatrix = IncidenceMatrix(adj_list.n, edge_count)
-        edge_index = 0
-        for v_from, _ in enumerate(adj_list.list):
-            for _, v_to in enumerate(v_from):
-                incidenceMatrix.add(edge_index, Edge(v_from, v_to))
-                edge_index += 1
-        return incidenceMatrix
+        edges_count = 0
+        for i in range(len(adj_list.list)):
+            edges_count += sum(adj_list.list[i])
+        incidence_matrix = IncidenceMatrix(adj_list.n, edges_count)
+        edge_num = 0
+        for i in range(len(adj_list.list)):
+            for j in range(len(adj_list.list[i])):
+                incidence_matrix.add(edge_num, i, j)
+                edge_num += 1
+        return incidence_matrix
 
     @staticmethod
     def adj_list_to_arc_sheaves_list(adj_list:AdjacentList) -> ArcSheavesList:
