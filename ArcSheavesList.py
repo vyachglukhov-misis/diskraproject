@@ -29,19 +29,3 @@ class ArcSheavesList:
             while k != -1:
                 print(self.I[i], self.J[k])
                 k = self.l[k]
-
-    def to_adjacent_list(self) -> AdjacentList:
-        adjacent_list = AdjacentList(self.n)
-
-        for i in range(self.n):
-            start = self.I[i]
-            end = self.J[i]
-
-            adjacent_list.add(Edge(start, end))
-
-        return adjacent_list
-
-
-arc = ArcSheavesList(4, 5)
-
-arc.print()
