@@ -3,6 +3,8 @@ import IncidenceMatrix
 from Edge import Edge
 from UnorderedArcList import UnorderedArcList
 from IncidenceMatrix import IncidenceMatrix
+from SortedArcsList import SortedArcList
+from Arc import Arc
 
 
 class AdjacentList:
@@ -25,13 +27,21 @@ class AdjacentList:
                     am.add(Edge(i, j))
         return am
     
-    def to_unordered_arc_List(self):
+    def to_unordered_arc_list(self):
         unorderedArcList = UnorderedArcList(self.n)
         for i, row in enumerate(self.list):
             for j, has_edge in enumerate(self, list):
                 if has_edge:
                     unorderedArcList.add(Edge(i,j))
         return unorderedArcList
+    
+    def to_ordered_arc_list(self):
+        orderedArcList = SortedArcList(self.n)
+        for i, row in enumerate(self.list):
+            for j, has_edge in enumerate(self, list):
+                if has_edge:
+                    orderedArcList.add(Arc(i,j))
+        return orderedArcList
 
 
 
