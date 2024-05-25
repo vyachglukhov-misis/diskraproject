@@ -3,6 +3,7 @@ class Arc:
         self.start = start
         self.end = end
 
+
 class Bundle:
     def __init__(self):
         self.arcs = []

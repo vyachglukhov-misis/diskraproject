@@ -1,6 +1,7 @@
 from AdjacentList import AdjacentList
 from Edge import Edge
 
+
 class UnorderedArcList:
     def __init__(self, v):
         self.edges = []
@@ -19,4 +20,3 @@ class UnorderedArcList:
             edge = Edge(edge.start, edge.end)
             adjList.add(edge)
         return adjList
-    

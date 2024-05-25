@@ -26,25 +26,22 @@ class AdjacentList:
                 if has_edge:
                     am.add(Edge(i, j))
         return am
-    
+
     def to_unordered_arc_list(self):
         unorderedArcList = UnorderedArcList(self.n)
         for i, row in enumerate(self.list):
             for j, has_edge in enumerate(row):
                 if has_edge:
-                    unorderedArcList.add(Edge(i,j))
+                    unorderedArcList.add(Edge(i, j))
         return unorderedArcList
-    
+
     def to_ordered_arc_list(self):
-        orderedArcList = SortedArcList(self.n)
+        ordered_arc_list = SortedArcList(self.n)
         for i, row in enumerate(self.list):
             for j, has_edge in enumerate(row):
                 if has_edge:
-                    orderedArcList.add(Arc(i,j))
-        return orderedArcList
-
-
-
+                    ordered_arc_list.add(Arc(i, j))
+        return ordered_arc_list
 
     # def to_incidence_matrix(self):
     #     edges_count = 0
@@ -62,10 +59,10 @@ class AdjacentList:
         edge_count = 0
         for _, v_verticles in enumerate(self.list):
             edge_count += len(v_verticles)
-        incidenceMatrix = IncidenceMatrix(self.n, edge_count)
+        incidence_matrix = IncidenceMatrix(self.n, edge_count)
         edge_index = 0
         for v_from, _ in enumerate(self.list):
             for _, v_to in enumerate(v_from):
-                incidenceMatrix.add(edge_index, Edge(v_from, v_to))
+                incidence_matrix.add(edge_index, Edge(v_from, v_to))
                 edge_index += 1
-        return incidenceMatrix
+        return incidence_matrix

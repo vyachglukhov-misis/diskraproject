@@ -26,13 +26,13 @@ class AdjacentMatrix:
 
     def to_incidence_matrix(self):
         edges_count = 0
-        for i in range(len(self.matrix)):
-            edges_count += sum(self.matrix[i])
-        edge_num = 0
+        for row in self.matrix:
+            edges_count += sum(row)
+        edge_index = 0
         incidence_matrix = IncidenceMatrix(self.v, edges_count)
         for i in range(len(self.matrix)):
             for j in range(len(self.matrix[i])):
                 if self.matrix[i][j]:
-                    incidence_matrix.add(edge_num, i, j)
-                    edge_num += 1
+                    incidence_matrix.add(edge_index, Edge(i, j))
+                    edge_index += 1
         return incidence_matrix
