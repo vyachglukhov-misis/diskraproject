@@ -1,4 +1,3 @@
-from AdjacentList import AdjacentList
 from Edge import Edge
 
 
@@ -6,21 +5,21 @@ class ArcSheavesList:
     def __init__(self, n, m):
         self.n = n
         self.m = m
-        self.I = [-1 for _ in range(m)]
-        self.J = [-1 for _ in range(m)]
+        self.I = []
+        self.J = []
         self.h = [-1 for _ in range(n)]
-        self.l = [-1 for _ in range(m)]
+        self.l = [-1 for _ in range(self.m)]
 
-        for i in range(m):
-            f, t = map(int, input().split())
+    def add(self, edge: Edge):
+        self.I.append(edge.start)
+        self.J.append(edge.end)
 
-            self.I.append(f)
-            self.J.append(t)
-
-        for i in range(m):
-            v = self.I[i]
-            self.l[i] = self.h[v]
-            self.h[v] = i
+        #когда закончили добавлять ребра, что обновить значения в h и l
+        if len(self.I) == self.m:
+            for i in range(self.m):
+                v = self.I[i]
+                self.l[i] = self.h[v]
+                self.h[v] = i
 
     def print(self):
         for i in range(self.n):
@@ -30,18 +29,12 @@ class ArcSheavesList:
                 print(self.I[i], self.J[k])
                 k = self.l[k]
 
-    def to_adjacent_list(self) -> AdjacentList:
-        adjacent_list = AdjacentList(self.n)
+        print("h:")
 
-        for i in range(self.n):
-            start = self.I[i]
-            end = self.J[i]
+        for i in self.h:
+            print(i)
 
-            adjacent_list.add(Edge(start, end))
+        print("l:")
 
-        return adjacent_list
-
-
-arc = ArcSheavesList(4, 5)
-
-arc.print()
+        for i in self.l:
+            print(i)
