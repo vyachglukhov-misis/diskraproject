@@ -54,12 +54,14 @@ class Graph:
         arcs = []
 
     def ArcSheavesList(self):
-        arcs = []
+        edges = []
+        for i in range(self._m):
+            f, t = map(int, input().split(' '))
+            edges.append(Edge(f, t))
 
-        for i in range(self._n):
-            arcs.append(list(map(int, input().split(' '))))
+        return ArcSheavesList(self._n, edges)
 
 
 graph = Graph()
-adj_list = graph.ListSmezhnost()
-arc_sheaves = ViewTransformerUtil.adj_list_to_arc_sheaves_list(adj_list)
+asl = graph.ArcSheavesList()
+asl.print()
