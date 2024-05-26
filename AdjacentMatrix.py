@@ -1,13 +1,22 @@
 from Edge import Edge
-from IncidenceMatrix import IncidenceMatrix
 from AdjacentList import AdjacentList
 
-
+"""
+    Матрица смежности
+    
+    это квадратная целочисленная матрица matrix размера n x n, в которой значение элемента matrix[i][j] 
+    равно булеву значению: 0, если из i-й вершины графа нет ребра в j-ю вершину, и 1, если наоборот. 
+    
+    минус матрицы смежности - высокое использование памяти - O(n^2) (где n - кол-во вершин), даже если граф - разряженный
+    
+    доступ к ребрам - O(1)
+"""
 class AdjacentMatrix:
     def __init__(self, v):
         self.matrix = [[False for _ in range(v)] for _ in range(v)]
         self.n = v
 
+    # конвретация из списка смежности в матрицу смежности
     @staticmethod
     def from_adjacent_list(adjacent_list: AdjacentList):
         adj_matrix = AdjacentMatrix(len(adjacent_list.n))
@@ -15,13 +24,16 @@ class AdjacentMatrix:
             for j in row:
                 adj_matrix.add(Edge(i, j))
 
+    # добавление ребра - O(1)
     def add(self, edge):
         self.matrix[edge.start][edge.end] = True
 
+    # обход матрицы с выводом на экран - O(n)
     def print(self):
         for i in self.matrix:
             print(' '.join(['1' if j else '0' for j in i]))
 
+    # конвертация из матрицы смежности в список смежности O(n^2)
     def to_adjacent_list(self):
         adj_list = AdjacentList(self.n)
         for i in range(self.n):
@@ -29,16 +41,3 @@ class AdjacentMatrix:
                 if self.matrix[i][j]:
                     adj_list.add(Edge(i, j))
         return adj_list
-
-    # def to_incidence_matrix(self):
-    #     edges_count = 0
-    #     for row in self.matrix:
-    #         edges_count += sum(row)
-    #     edge_index = 0
-    #     incidence_matrix = IncidenceMatrix(self.v, edges_count)
-    #     for i in range(len(self.matrix)):
-    #         for j in range(len(self.matrix[i])):
-    #             if self.matrix[i][j]:
-    #                 incidence_matrix.add(edge_index, Edge(i, j))
-    #                 edge_index += 1
-    #     return incidence_matrix
