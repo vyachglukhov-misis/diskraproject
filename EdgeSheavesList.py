@@ -74,7 +74,7 @@ class EdgeSheavesList:
         for edge_end in self.next_edge:
             print(edge_end)
 
-    # конвертация списка пучков дуг в список смежности, ассимптотика O(n)
+    # конвертация списка пучков дуг в список смежности, ассимптотика O(m)
     def to_adjacent_list(self) -> AdjacentList:
         adj_list = AdjacentList(self.n)
 
