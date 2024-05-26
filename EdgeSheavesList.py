@@ -77,7 +77,7 @@ class EdgeSheavesList:
     def to_adjacent_list(self) -> AdjacentList:
         adj_list = AdjacentList(self.n)
 
-        for i in range(self.n):
+        for i in range(self.m):
             start = self.starts[i]
             end = self.ends[i]
 
@@ -85,3 +85,9 @@ class EdgeSheavesList:
 
         return adj_list
 
+'''
+пример построение графа
+
+входные данные: вершины - 4, ребер - 5, ребра: (0, 1), (1, 2), (2, 3), (1, 3), (0, 2).
+значения полей: starts = [0,1,2,1,0], ends = [1,2,3,3,2], heads = [4,3,2,-1], next_edge=[-1,-1,-1,1,0]
+'''

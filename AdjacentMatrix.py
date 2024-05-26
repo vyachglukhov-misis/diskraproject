@@ -10,6 +10,10 @@ from AdjacentList import AdjacentList
     минус матрицы смежности - высокое использование памяти - O(n^2) (где n - кол-во вершин), даже если граф - разряженный
     
     доступ к ребрам - O(1)
+    
+    пример построение графа:
+    входные данные: вершины - 4, ребер - 5, ребра: (0, 1), (1, 2), (2, 3), (1, 3), (0, 4)
+    
 """
 class AdjacentMatrix:
     def __init__(self, v):
@@ -19,10 +23,11 @@ class AdjacentMatrix:
     # конвретация из списка смежности в матрицу смежности
     @staticmethod
     def from_adjacent_list(adjacent_list: AdjacentList):
-        adj_matrix = AdjacentMatrix(len(adjacent_list.n))
+        adj_matrix = AdjacentMatrix(adjacent_list.n)
         for i, row in enumerate(adjacent_list.list):
             for j in row:
                 adj_matrix.add(Edge(i, j))
+        return adj_matrix
 
     # добавление ребра - O(1)
     def add(self, edge):
@@ -41,3 +46,16 @@ class AdjacentMatrix:
                 if self.matrix[i][j]:
                     adj_list.add(Edge(i, j))
         return adj_list
+
+'''
+пример построение графа
+
+входные данные: вершины - 4, ребер - 5, ребра: (0, 1), (1, 2), (2, 3), (1, 3), (0, 2).
+получим матрицу
+
+0 1 1 0
+0 0 1 1
+0 0 0 1
+0 0 0 0
+
+'''
