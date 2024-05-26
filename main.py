@@ -5,7 +5,7 @@ from EdgeSheavesList import EdgeSheavesList
 from OrderedEdgeList import OrderedEdgeList
 from IncidenceMatrix import IncidenceMatrix
 from UnorderedEdgeList import UnorderedEdgeList
-from Transformer import transform
+from Converter import convert
 
 
 class Graph:
@@ -42,8 +42,8 @@ class Graph:
     def print(self):
         self._graph.print()
 
-    def transform_to(self, view_class):
-        self._graph = transform(self._graph, view_class)
+    def convert_to(self, view_class):
+        self._graph = convert(self._graph, view_class)
 
     def adj_matrix(self) -> AdjacentMatrix:
         am = AdjacentMatrix(self._n)
@@ -160,4 +160,4 @@ if __name__ == "__main__":
                     print("некорректный ввод, попробуйте снова")
                     continue
 
-                graph.transform_to(view_class)
+                graph.convert_to(view_class)

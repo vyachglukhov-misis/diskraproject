@@ -2,26 +2,46 @@ from AdjacentList import AdjacentList
 from Edge import Edge
 
 
+'''
+    Список пучков дуг
+    
+    Каждый пучок дуг будет представлен в виде одностороннего списка, sheaf_heads[i] – номер первой дуги в списке дуг,
+    выходящих из вершины i, next_edge[i] – номер следующей в списке дуги, выходящей из той же вершины, что и дуга k.
+    
+    Трудоемкость обхода пучка дуг - такая же, как и для упорядоченного списка: пропорциональна количеству дуг пучка
+    
+    просмотр дуги - O(1)
+    
+    сложность построения - O(m)
+'''
 class EdgeSheavesList:
     def __init__(self, n, m):
+        # количество вершин
         self.n = n
+        # количество дуг
         self.m = m
+        # массив начал дуг. Например, если есть дуги (0,1), (0,2), то starts = [0, 0]
         self.starts = []
+        # массив концов дуг. Например, если есть дуги (0,1), (0,2), то ends = [1, 2]
         self.ends = []
+        # sheaf_heads[i] хранит номер первой дуги в списке дуг
         self.sheaf_heads = [-1 for _ in range(self.n)]
+        # next_edge[i] – номер следующей в списке дуги
         self.next_edge = [-1 for _ in range(self.m)]
 
+    # метод добавления дуги
     def add(self, edge: Edge):
         self.starts.append(edge.start)
         self.ends.append(edge.end)
 
-        #когда закончили добавлять ребра, надо обновить значения в sheaf_heades и next_edge
+        # когда закончили добавлять дуги, надо обновить значения в sheaf_heades и next_edge
         if len(self.starts) == self.m:
             for i in range(self.m):
                 v = self.starts[i]
                 self.next_edge[i] = self.sheaf_heads[v]
                 self.sheaf_heads[v] = i
 
+    # статический метод по конвертации списка смежности в список пучков дуг, ассимптотика O(n+m)
     @staticmethod
     def from_adjacent_list(adj_list: AdjacentList):
         edges_count = 0
@@ -36,6 +56,7 @@ class EdgeSheavesList:
 
         return esl
 
+    # обход списка пучков дуг с выводом всей информации на экран
     def print(self):
         for i in range(self.n):
             # просмотр пучка дуг, выходящих из вершины i
@@ -52,6 +73,7 @@ class EdgeSheavesList:
         for edge_end in self.next_edge:
             print(edge_end)
 
+    # конвертация списка пучков дуг в список смежности, ассимптотика O(n)
     def to_adjacent_list(self) -> AdjacentList:
         adj_list = AdjacentList(self.n)
 
@@ -63,29 +85,3 @@ class EdgeSheavesList:
 
         return adj_list
 
-
-# test
-#пример графа и ожидаемого результата на стр 24 учебника
-# print("From adj list")
-# adj_list = AdjacentList(4)
-#
-# adj_list.add(Edge(0, 1))
-# adj_list.add(Edge(1, 2))
-# adj_list.add(Edge(2, 3))
-# adj_list.add(Edge(1, 3))
-# adj_list.add(Edge(0, 2))
-#
-# EdgeSheavesList.from_adjacent_list(adj_list).print()
-#
-# print("From constructor")
-# esl = EdgeSheavesList(4, 5)
-#
-# esl.add(Edge(0, 1))
-# esl.add(Edge(1, 2))
-# esl.add(Edge(2, 3))
-# esl.add(Edge(1, 3))
-# esl.add(Edge(0, 2))
-#
-# esl.print()
-
-#всё вроде корректно - на бумажке проверил
