@@ -10,13 +10,17 @@ class AdjacentList:
     def to_adjacent_list(self):
         return self
 
+    @staticmethod
+    def from_adjacent_list(self):
+        return self
+
     def add(self, edge: Edge):
         self.list[edge.start].add(edge.end)
         self.m += 1
 
     def print(self):
         for i in self.list:
-            print(' '.join(i))
+            print(' '.join(str(i)))
 
 
     # def to_adjacent_matrix(self):

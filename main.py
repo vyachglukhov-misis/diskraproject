@@ -42,8 +42,8 @@ class Graph:
     def print(self):
         self._graph.print()
 
-    # def transform_to(self, ):
-    #     ...
+    def transform_to(self, view_class):
+        self._graph = transform(self._graph, view_class)
 
     def adj_matrix(self) -> AdjacentMatrix:
         am = AdjacentMatrix(self._n)
@@ -111,6 +111,8 @@ if __name__ == "__main__":
                     "3. Конвертировать граф\n"
                     )
 
+        print(commands)
+
         match int(input()):
             case 1:
                 try:
@@ -126,8 +128,36 @@ if __name__ == "__main__":
                 if graph is None:
                     print("нет графа")
                     continue
-                ...
-                graph.transform_to()
 
-        graph = Graph()
-        graph.print()
+                choice_of_view = (""
+                                  "Выберите представление графа\n "
+                                  "1. Матрица смежности\n "
+                                  "2. Матрица инцидентности\n "
+                                  "3. Список смежности\n "
+                                  "4. Списки дуг\n "
+                                  "5. Отсортированные списки дуг\n "
+                                  "6. Списки пучков дуг\n"
+                                  )
+
+                print(choice_of_view)
+
+                view_class = None
+                match int(input()):
+                    case 1:
+                        view_class = AdjacentMatrix
+                    case 2:
+                        view_class = IncidenceMatrix
+                    case 3:
+                        view_class = AdjacentList
+                    case 4:
+                        view_class = UnorderedEdgeList
+                    case 5:
+                        view_class = OrderedEdgeList
+                    case 6:
+                        view_class = EdgeSheavesList
+
+                if view_class is None:
+                    print("некорректный ввод, попробуйте снова")
+                    continue
+
+                graph.transform_to(view_class)
