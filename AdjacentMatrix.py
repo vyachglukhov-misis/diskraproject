@@ -15,6 +15,8 @@ from AdjacentList import AdjacentList
     входные данные: вершины - 4, ребер - 5, ребра: (0, 1), (1, 2), (2, 3), (1, 3), (0, 4)
     
 """
+
+
 class AdjacentMatrix:
     def __init__(self, v):
         self.matrix = [[False for _ in range(v)] for _ in range(v)]
@@ -46,6 +48,7 @@ class AdjacentMatrix:
                 if self.matrix[i][j]:
                     adj_list.add(Edge(i, j))
         return adj_list
+
 
 '''
 пример построение графа

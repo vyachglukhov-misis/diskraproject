@@ -1,7 +1,6 @@
 from AdjacentList import AdjacentList
 from Edge import Edge
 
-
 '''
     Список пучков дуг
     
@@ -14,6 +13,8 @@ from Edge import Edge
     
     сложность построения - O(m)
 '''
+
+
 class EdgeSheavesList:
     def __init__(self, n, m):
         # количество вершин
@@ -84,6 +85,7 @@ class EdgeSheavesList:
             adj_list.add(Edge(start, end))
 
         return adj_list
+
 
 '''
 пример построение графа
