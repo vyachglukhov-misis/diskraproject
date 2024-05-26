@@ -42,10 +42,8 @@ class Graph:
     def print(self):
         self._graph.print()
 
-    def transform(self):
-        print(
-            "к чему привести граф"
-        )
+    # def transform_to(self, ):
+    #     ...
 
     def adj_matrix(self) -> AdjacentMatrix:
         am = AdjacentMatrix(self._n)
@@ -105,5 +103,31 @@ class Graph:
 
 
 if __name__ == "__main__":
-    graph = Graph()
-    graph.print()
+    graph = None
+    while True:
+        commands = ("Введите команду:\n"
+                    "1. Создать граф\n"
+                    "2. Вывести граф\n"
+                    "3. Конвертировать граф\n"
+                    )
+
+        match int(input()):
+            case 1:
+                try:
+                    graph = Graph()
+                except AssertionError:
+                    print("проверьте корректность ввода и попробуйте еще раз")
+            case 2:
+                if graph is None:
+                    print("нет графа")
+                    continue
+                graph.print()
+            case 3:
+                if graph is None:
+                    print("нет графа")
+                    continue
+                ...
+                graph.transform_to()
+
+        graph = Graph()
+        graph.print()
