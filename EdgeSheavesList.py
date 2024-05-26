@@ -66,26 +66,26 @@ class EdgeSheavesList:
 
 # test
 #пример графа и ожидаемого результата на стр 24 учебника
-print("From adj list")
-adj_list = AdjacentList(4)
-
-adj_list.add(Edge(0, 1))
-adj_list.add(Edge(1, 2))
-adj_list.add(Edge(2, 3))
-adj_list.add(Edge(1, 3))
-adj_list.add(Edge(0, 2))
-
-EdgeSheavesList.from_adjacent_list(adj_list).print()
-
-print("From constructor")
-esl = EdgeSheavesList(4, 5)
-
-esl.add(Edge(0, 1))
-esl.add(Edge(1, 2))
-esl.add(Edge(2, 3))
-esl.add(Edge(1, 3))
-esl.add(Edge(0, 2))
-
-esl.print()
+# print("From adj list")
+# adj_list = AdjacentList(4)
+#
+# adj_list.add(Edge(0, 1))
+# adj_list.add(Edge(1, 2))
+# adj_list.add(Edge(2, 3))
+# adj_list.add(Edge(1, 3))
+# adj_list.add(Edge(0, 2))
+#
+# EdgeSheavesList.from_adjacent_list(adj_list).print()
+#
+# print("From constructor")
+# esl = EdgeSheavesList(4, 5)
+#
+# esl.add(Edge(0, 1))
+# esl.add(Edge(1, 2))
+# esl.add(Edge(2, 3))
+# esl.add(Edge(1, 3))
+# esl.add(Edge(0, 2))
+#
+# esl.print()
 
 #всё вроде корректно - на бумажке проверил

@@ -17,9 +17,9 @@ class OrderedEdgeList(UnorderedEdgeList):
         self.m += 1
 
 
-# Test
-s = OrderedEdgeList(10)
-s.add(Edge(1, 2))
-s.add(Edge(2, 4))
-s.add(Edge(0, 2))
-s.print()
+# # Test
+# s = OrderedEdgeList(10)
+# s.add(Edge(1, 2))
+# s.add(Edge(2, 4))
+# s.add(Edge(0, 2))
+# s.print()
