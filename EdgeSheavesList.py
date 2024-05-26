@@ -31,7 +31,7 @@ class EdgeSheavesList:
         for i, row in oel.list:
             esl.sheave_heads[i] = edge_index
             for j in range(1, len(row)):
-                 esl.next_edge[edge_index] = edge_index + 1
+                esl.next_edge[edge_index] = edge_index + 1
                 edge_index += 1
         esl.oel = oel
         return esl
