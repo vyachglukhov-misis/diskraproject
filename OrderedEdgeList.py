@@ -1,9 +1,8 @@
 from Edge import Edge
-from UnorderedEdgeList import UnorderedEdgeList
 from AdjacentList import AdjacentList
 
 
-class OrderedEdgeList():
+class OrderedEdgeList:
     starts: list[int]
     ends: list[int]
     n: int
@@ -21,15 +20,13 @@ class OrderedEdgeList():
         self.n = n
         self.starts = []
         self.ends = []
+        self.m = 0
 
     def add(self, edge: Edge):
-        # Еще можно бин поиском
-        i = len(self.starts) - 1
-        while i >= 0 and Edge(self.starts[i], self.ends[i]) > edge:
-            i -= 1
-
-        self.starts.insert(i + 1, edge.start)
-        self.ends.insert(i + 1, edge.end)
+        assert edge.start < self.n
+        assert edge.end < self.n
+        self.starts.append(edge.start)
+        self.ends.append(edge.end)
         self.m += 1
 
     def print(self):
