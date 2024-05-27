@@ -20,6 +20,7 @@ class UnorderedEdgeList:
         self.n = n
         self.starts = []
         self.ends = []
+        self.m = 0
 
     def add(self, edge: Edge):
         assert edge.start < self.n
