@@ -1,6 +1,18 @@
 from Edge import Edge
 from AdjacentList import AdjacentList
 
+'''
+    Отсортированный список дуг
+
+    Представляет собой два массива starts и ends - начало и конец i-ой дуги соответсвенно, 
+    отсортированные по вершинам: приоритет сортировки исток потом сток
+    Обход всех дуг O(m)
+    Просмотр дуги O(1)
+    Просмотр пучка дуг O(m) при использовании бин поиска
+    Нахождение дуги по истоку O(log n) или O(1) при использовании доп хеш таблицы 
+    Построение О(m**2) на самом деле можно за O(n log n) если использовать бинарное дерево
+'''
+
 
 class OrderedEdgeList:
     starts: list[int]
@@ -39,3 +51,9 @@ class OrderedEdgeList:
             adj_list.add(Edge(self.starts[i], self.ends[i]))
 
         return adj_list
+# # Test
+# s = OrderedEdgeList(10)
+# s.add(Edge(1, 2))
+# s.add(Edge(2, 4))
+# s.add(Edge(0, 2))
+# s.print()

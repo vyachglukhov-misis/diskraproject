@@ -1,6 +1,17 @@
 from AdjacentList import AdjacentList
 from Edge import Edge
 
+'''
+    Неотсортировфнный список дуг
+
+    Представляет собой два массива starts и ends - начало и конец i-ой дуги соответсвенно
+    Обход всех дуг O(m)
+    Просмотр дуги O(1)
+    Просмотр пучка дуг O(m)
+    Нахождение дуги по истоку O(m) или O(1) при использовании доп хеш таблицы
+    Построение О(m)
+'''
+
 
 class UnorderedEdgeList:
     starts: list[int]
